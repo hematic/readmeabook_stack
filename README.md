@@ -38,7 +38,7 @@ directories over the network.
 
 | Variable | Description |
 |---|---|
-| `PUID` / `PGID` | Use `hematic`'s real ids on this NAS: `1026` / `100` (confirmed via `id hematic` — NOT 1024, an earlier wrong guess that caused a silent write-permission failure on `/volume1/audiobooks`) |
+| `PUID` / `PGID` | **`0` / `0` (root).** `/volume1/audiobooks` has a Synology ACL that denies write even to the exact matching owner identity (`1026:100`, confirmed via `id hematic` and verified on-disk ownership) — root is the only identity that could write there in testing. Same workaround FileBrowser Quantum uses (`user: "0:0"`) for this NAS's ACL'd shares. |
 | `TZ` | Timezone |
 | `RMAB_JWT_SECRET` | `openssl rand -hex 32` |
 | `RMAB_JWT_REFRESH_SECRET` | `openssl rand -hex 32` |
