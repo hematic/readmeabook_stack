@@ -19,7 +19,10 @@ services:
       # Must match qBittorrent's and Audiobookshelf's real paths exactly --
       # both are NAS shares this container reaches directly, being on the NAS.
       - /volume1/downloads:/downloads
-      - /volume1/audiobooks:/media
+      # Mounted one level deep (not straight onto /media) so the app's own
+      # path validator -- which expects a subfolder with a plain writable
+      # parent -- is happy; the real files still land in /volume1/audiobooks.
+      - /volume1/audiobooks:/media/audiobooks
     ports:
       - 3030:3030
     healthcheck:

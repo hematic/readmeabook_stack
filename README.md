@@ -22,7 +22,13 @@ appear to succeed but silently fail to import.
 | RMAB path | Real share | Matches |
 |---|---|---|
 | `/downloads` | `/volume1/downloads` | qBittorrent's `${DOWNLOADS}` (`/mnt/downloads` on the ThinkCentre, NFS to this same share) |
-| `/media` | `/volume1/audiobooks` | Audiobookshelf's `${AUDIOBOOKS}` (`/mnt/audiobooks` on the ThinkCentre, same share) |
+| `/media/audiobooks` | `/volume1/audiobooks` | Audiobookshelf's `${AUDIOBOOKS}` (`/mnt/audiobooks` on the ThinkCentre, same share) |
+
+Mounted one level deep (`/media/audiobooks`, not straight onto `/media`) because
+RMAB's setup-wizard path validator checks that the *parent* of the entered
+Media Directory is a plain writable path — pointing it straight at a mount
+root failed validation even though the mount itself was genuinely writable.
+Set **Media Directory = `/media/audiobooks`** in the wizard to match.
 
 Because this container runs directly on the NAS, these are plain local paths —
 no NFS mount needed on this side, even though the ThinkCentre reaches the same
