@@ -38,7 +38,7 @@ directories over the network.
 
 | Variable | Description |
 |---|---|
-| `PUID` / `PGID` | Match the NAS's usual values (other 920 stacks use `1024`) |
+| `PUID` / `PGID` | Use `hematic`'s real ids on this NAS: `1026` / `100` (confirmed via `id hematic` — NOT 1024, an earlier wrong guess that caused a silent write-permission failure on `/volume1/audiobooks`) |
 | `TZ` | Timezone |
 | `RMAB_JWT_SECRET` | `openssl rand -hex 32` |
 | `RMAB_JWT_REFRESH_SECRET` | `openssl rand -hex 32` |
